@@ -1,5 +1,10 @@
 com/example/demo/DemoApplication.class
-com/example/demo/SseController.class
+com/example/demo/PedidoController.class
 com/example/demo/SseMvcController.class
+com/example/demo/PedidoRepository.class
 com/example/demo/WebSocketConfig.class
+com/example/demo/Pedido.class
+com/example/demo/SseController.class
+com/example/demo/PedidoService.class
 com/example/demo/SimpleWebSocketHandler.class
+com/example/demo/PedidoController$PedidoRequest.class

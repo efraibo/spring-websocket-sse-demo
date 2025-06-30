@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,18 @@ import java.time.Duration;
 @RestController
 public class SseController {
 
+    @Autowired
+    private PedidoService pedidoService;
+
     @GetMapping(value = "/sse/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<ServerSentEvent<String>> streamEvents() {
-        return Flux.interval(Duration.ofSeconds(2))
-                   .map(seq -> ServerSentEvent.builder("Mensagem #" + seq).build());
+        // Combina eventos periódicos com eventos de pedidos
+        Flux<ServerSentEvent<String>> keepAlive = Flux.interval(Duration.ofSeconds(30))
+                .map(seq -> ServerSentEvent.builder("Keep-alive #" + seq).build());
+
+        Flux<ServerSentEvent<String>> pedidoEvents = pedidoService.getEventStream()
+                .map(mensagem -> ServerSentEvent.builder(mensagem).build());
+
+        return Flux.merge(keepAlive, pedidoEvents);
     }
 }
