@@ -1,0 +1,40 @@
+# .gitignore para projetos Java/Spring Boot
+/target/
+*.iml
+.idea/
+*.log
+*.class
+*.jar
+*.war
+*.ear
+.DS_Store
+/.vscode/
+
+# Arquivos de sistema
+Thumbs.db
+
+# Configurações do Maven
+.mvn/
+
+# Configurações do IntelliJ
+*.iws
+*.ipr
+*.xml
+
+# Ignorar arquivos de controle de versão da IDE
+.idea/vcs.xml
+
+# Configurações do Eclipse
+*.classpath
+*.project
+*.settings/
+
+# Arquivos de build
+build/
+
+# Arquivos de teste
+/test-output/
+
+# Arquivos temporários
+*.tmp
+*.swp
